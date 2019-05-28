@@ -14,6 +14,7 @@ public class Game {
     timesGet = 0;
     timesAvoid = 0;
     updateTitle();
+    grid.setBackground("mainpic.jpg");
     grid.setImage(new Location(userRow, 0), "user.gif");
   }
   
