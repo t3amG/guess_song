@@ -37,16 +37,16 @@ public class Game {
     System.out.println(key);
     if(key == 38){
       //call method to do the work 
-    }
     //set up a key to move up the grid 'Up Arrow'
       //check case if you are out of bounds or if you move pass the 0 end at the bottom of the array
       //change the field for user
+      userRow--;
       //shift the user picture up in the aaray
       Location loc = new Location(userRow, 0);
       grid.setImage(loc, "user.gif");
-      Location oldLoc = new Location(userRow, 0);
+      Location oldLoc = new Location(userRow +1, 0);
       grid.setImage(oldLoc, null);
-
+    }
     //set up a key to move down the grid 'Down Arrow'
 
   }
