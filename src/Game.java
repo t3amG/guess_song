@@ -7,9 +7,11 @@ public class Game {
   private int timesAvoid;
   private WavPlayer song1;
   private WavPlayer song2;
+  private String mainWitch;
 
   public Game() {
 
+    mainWitch = "witch.png";
     grid = new Grid(5, 10);
     userRow = 0;
     msElapsed = 0;
@@ -19,6 +21,8 @@ public class Game {
     grid.setImage(new Location(userRow, 0), "user.gif");
     song2 = new WavPlayer("CB money.wav");
     song2.startSound();
+    grid.setBackground("mainpic.jpg");
+    grid.setImage(new Location(userRow, 0), mainWitch);
   }
 
   public void play() {
@@ -45,13 +49,22 @@ public class Game {
       // set up a key to move up the grid 'Up Arrow'
       // check case if you are out of bounds or if you move pass the 0 end at the
       // bottom of the array
+
+      Location oldLoc = new Location(userRow, 0);
+      grid.setImage(oldLoc, null);
+
       // change the field for user
       userRow--;
+
+      if (userRow == -1) {
+        userRow = grid.getNumRows() - 1;
+        System.out.println("Row#: " + userRow);
+      }
+
       // shift the user picture up in the aaray
       Location loc = new Location(userRow, 0);
-      grid.setImage(loc, "user.gif");
-      Location oldLoc = new Location(userRow + 1, 0);
-      grid.setImage(oldLoc, null);
+      grid.setImage(loc, mainWitch);
+
     }
     // set up a key to move down the grid 'Down Arrow'
 

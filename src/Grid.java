@@ -154,7 +154,7 @@ public class Grid extends JComponent implements KeyListener, MouseListener
 				cells[row][col] = new Cell();
 		}
 
-		frame = new JFrame("Grid");
+		frame = new JFrame("mainpic.jpg");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addKeyListener(this);
 
