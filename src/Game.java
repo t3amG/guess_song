@@ -5,7 +5,9 @@ public class Game {
   private int msElapsed;
   private int timesGet;
   private int timesAvoid;
-  
+  private WavPlayer song1;
+  private WavPlayer song2;
+
   public Game() {
 
     grid = new Grid(5, 10);
@@ -15,10 +17,13 @@ public class Game {
     timesAvoid = 0;
     updateTitle();
     grid.setImage(new Location(userRow, 0), "user.gif");
+    song2 = new WavPlayer("CB money.wav");
+    song2.startSound();
   }
-  
+
   public void play() {
 
+    // song1.startSound();
     while (!isGameOver()) {
       grid.pause(100);
       handleKeyPress();
@@ -30,51 +35,52 @@ public class Game {
       msElapsed += 100;
     }
   }
-  
-  public void handleKeyPress(){
-    //check last key pressed
+
+  public void handleKeyPress() {
+    // check last key pressed
     int key = grid.checkLastKeyPressed();
     System.out.println(key);
-    if(key == 38){
-      //call method to do the work 
-    //set up a key to move up the grid 'Up Arrow'
-      //check case if you are out of bounds or if you move pass the 0 end at the bottom of the array
-      //change the field for user
+    if (key == 38) {
+      // call method to do the work
+      // set up a key to move up the grid 'Up Arrow'
+      // check case if you are out of bounds or if you move pass the 0 end at the
+      // bottom of the array
+      // change the field for user
       userRow--;
-      //shift the user picture up in the aaray
+      // shift the user picture up in the aaray
       Location loc = new Location(userRow, 0);
       grid.setImage(loc, "user.gif");
-      Location oldLoc = new Location(userRow +1, 0);
+      Location oldLoc = new Location(userRow + 1, 0);
       grid.setImage(oldLoc, null);
     }
-    //set up a key to move down the grid 'Down Arrow'
+    // set up a key to move down the grid 'Down Arrow'
 
   }
-  
-  public void populateRightEdge(){
+
+  public void populateRightEdge() {
 
   }
-  
-  public void scrollLeft(){
+
+  public void scrollLeft() {
 
   }
-  
+
   public void handleCollision(Location loc) {
 
   }
-  
+
   public int getScore() {
     return 0;
   }
-  
+
   public void updateTitle() {
     grid.setTitle("Game:  " + getScore());
   }
-  
+
   public boolean isGameOver() {
     return false;
   }
-    
+
   public static void main(String[] args) {
     Game game = new Game();
     game.play();
