@@ -8,6 +8,9 @@
  * If you place the .wav file in your "src" folder,
  * and writing JUST the file name as the String input (ie. "fileName.wav")
  * 
+ * If you place your .wav files in a "songs" folder inside your "src" folder,
+ * you can write your  file name as the String input (ie. "songs/fileName.wav")
+ * 
  * Version 2: Capability given to create multiple sound objects
  * Version 3: Works with runnable jars
  * 
@@ -56,7 +59,7 @@ public class WavPlayer {
 	 */
 	public WavPlayer(String track) {
 		this.wavMusicFile = track;
-		startSound();
+		//startSound();
 
 	}
 

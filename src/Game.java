@@ -11,23 +11,26 @@ public class Game {
 
   public Game() {
 
-    mainWitch = "witch.png";
+    mainWitch = "images/witch.png";
     grid = new Grid(5, 10);
     userRow = 0;
     msElapsed = 0;
     timesGet = 0;
     timesAvoid = 0;
     updateTitle();
-    grid.setImage(new Location(userRow, 0), "user.gif");
-    song2 = new WavPlayer("CB money.wav");
-    song2.startSound();
-    grid.setBackground("mainpic.jpg");
+    grid.setImage(new Location(userRow, 0), "images/user.gif");
+    song1 = new WavPlayer("songs/LH DW.wav");
+    song1.startSound();
+    //song2 = new WavPlayer("CB money.wav");
+    //song2 = new WavPlayer("songs/CB money.wav");
+    //song2.startSound();
+
+    grid.setBackground("images/mainpic.jpg");
     grid.setImage(new Location(userRow, 0), mainWitch);
   }
 
   public void play() {
 
-    // song1.startSound();
     while (!isGameOver()) {
       grid.pause(100);
       handleKeyPress();
