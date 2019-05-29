@@ -24,6 +24,7 @@ public class Game {
     //song2 = new WavPlayer("CB money.wav");
     //song2 = new WavPlayer("songs/CB money.wav");
     //song2.startSound();
+    
 
     grid.setBackground("images/mainpic.jpg");
     grid.setImage(new Location(userRow, 0), mainWitch);
