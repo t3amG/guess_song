@@ -5,33 +5,36 @@ public class Game {
   private int msElapsed;
   private int timesGet;
   private int timesAvoid;
-  private WavPlayer song1;
+  private WavPlayer mainSong;
   private WavPlayer song2;
   private String mainWitch;
   private int lives;
   private boolean readyToStart;
+  // private String[] nameOfSong;
+  // private songs[][];
 
   public Game() {
 
     readyToStart = true;
     lives = 5;
-    mainWitch = "witch.png";
+    mainWitch = "images/witch.png";
     grid = new Grid(5, 10);
     userRow = 0;
     msElapsed = 0;
     timesGet = 0;
     timesAvoid = 0;
+    mainSong = new WavPlayer("songs/L Coconut Oil.wav");
+    mainSong.startSound(););
     updateTitle();
-    grid.setImage(new Location(userRow, 0), "user.gif");
-    song2 = new WavPlayer("CB money.wav");
-    // song2.startSound();
-    grid.setBackground("mainpic.jpg");
+    grid.setImage(new Location(userRow, 0), "images/user.gif");
+
+//if(user clicks enter then go to this screen)
+    grid.setBackground("images/mainpic.jpg");
     grid.setImage(new Location(userRow, 0), mainWitch);
   }
 
   public void play() {
 
-    // song1.startSound();
     while (!isGameOver()) {
       grid.pause(100);
       handleKeyPress();
