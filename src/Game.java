@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Game {
 
   private Grid grid;
@@ -6,12 +8,13 @@ public class Game {
   private int timesGet;
   private int timesAvoid;
   private WavPlayer mainSong;
-  private WavPlayer song2;
+  private WavPlayer titleSong;
   private String mainWitch;
   private int lives;
   private boolean readyToStart;
-  // private String[] nameOfSong;
-  // private songs[][];
+  private String[] songNames = { "7 Rings", "Bad Guy", "Bohemian Rhapsody", "Coconut Oil", "Could You Be Loved",
+      "Doo Wop", "Hollaback Girl", "Imported", "Money", "Old Town Road", "Runnin", "Temperature", "Time", "Toast" };
+  private List<WavPlayer> songs;
 
   public Game() {
 
@@ -23,8 +26,13 @@ public class Game {
     msElapsed = 0;
     timesGet = 0;
     timesAvoid = 0;
-    mainSong = new WavPlayer("songs/L Coconut Oil.wav");
+    titleSong = new WavPlayer("songs/Holy Mountain.wav");
+    // if(user clicks enter then go to this screen)
+    // titleSong.stop();
+
+    mainSong = new WavPlayer("songs/Coconut Oil.wav");
     mainSong.startSound();
+    // mainSong.keeplooping();
     updateTitle();
     grid.setImage(new Location(userRow, 0), "images/user.gif");
 
@@ -32,6 +40,12 @@ public class Game {
     grid.setBackground("images/mainpic.jpg");
     grid.setMovableBackground("images/mainpic.jpg", 0, 0, 1.0, 1.0);
     grid.setImage(new Location(userRow, 0), mainWitch);
+
+    songs = new ArrayList<WavPlayer>();
+    for (int i = 0; i < songNames.length; i++) {
+      songs.add(new WavPlayer("songs/" + songNames[i] + ".wav"));
+    }
+
   }
 
   public void play() {
@@ -117,7 +131,7 @@ public class Game {
 
   public void handleCollision(Location loc) {
 
-    song2.startSound();
+    songs[2].startSound();
     lives--;
     System.out.println("Lives:" + lives);
 
