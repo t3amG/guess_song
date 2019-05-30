@@ -24,12 +24,13 @@ public class Game {
     timesGet = 0;
     timesAvoid = 0;
     mainSong = new WavPlayer("songs/L Coconut Oil.wav");
-    mainSong.startSound(););
+    mainSong.startSound();
     updateTitle();
     grid.setImage(new Location(userRow, 0), "images/user.gif");
 
-//if(user clicks enter then go to this screen)
+    // if(user clicks enter then go to this screen)
     grid.setBackground("images/mainpic.jpg");
+    grid.setMovableBackground("images/mainpic.jpg", 0, 0, 1.0, 1.0);
     grid.setImage(new Location(userRow, 0), mainWitch);
   }
 
@@ -71,6 +72,29 @@ public class Game {
 
       if (userRow == -1) {
         userRow = grid.getNumRows() - 1;
+        System.out.println("Row#: " + userRow);
+      }
+
+      // shift the user picture up in the aaray
+      Location loc = new Location(userRow, 0);
+      grid.setImage(loc, mainWitch);
+
+    }
+    // set up a key to move down the grid 'Down Arrow'
+    if (key == 40) {
+      // call method to do the work
+      // set up a key to move up the grid 'Up Arrow'
+      // check case if you are out of bounds or if you move pass the 0 end at the
+      // bottom of the array
+
+      Location oldLoc = new Location(userRow, 0);
+      grid.setImage(oldLoc, null);
+
+      // change the field for user
+      userRow++;
+
+      if (userRow == 5) {
+        userRow = 0;
         System.out.println("Row#: " + userRow);
       }
 
