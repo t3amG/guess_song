@@ -112,11 +112,13 @@ public class Game {
   }
 
   public void populateRightEdge() {
-    probOfNoteSpawn = (int)( Math.random()*grid.getNumCols());
+    probOfNoteSpawn = (int) (Math.random()*grid.getNumRows());
+    int noteSpawn = (int) (Math.random()*grid.getNumRows());
     System.out.println(probOfNoteSpawn);
+    if(noteSpawn == probOfNoteSpawn){
     Location tempLoc = new Location(probOfNoteSpawn, grid.getNumCols()-1);
     grid.setImage(tempLoc, notesPic);
-
+    }
   }
 
   public void scrollLeft() {
@@ -124,7 +126,6 @@ public class Game {
 
     for(int i = 0; i <grid.getNumRows(); i++){
       for(int j = 0; j < grid.getNumCols(); j++){
-       //System.out.println(i + "," + j);
        Location temp = new Location (i, j);
        System.out.println(grid.getImage(temp));
        
