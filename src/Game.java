@@ -112,7 +112,7 @@ public class Game {
   }
 
   public void populateRightEdge() {
-    probOfNoteSpawn = (int)( Math.random()*grid.getNumRows());
+    probOfNoteSpawn = (int)( Math.random()*grid.getNumCols());
     System.out.println(probOfNoteSpawn);
     Location tempLoc = new Location(probOfNoteSpawn, grid.getNumCols()-1);
     grid.setImage(tempLoc, notesPic);
