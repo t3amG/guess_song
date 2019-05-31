@@ -140,15 +140,8 @@ public class Game {
       }
     }
   }
-    // grid.setImage(1, imageFileName);
-    // Location oldLoc = new Location(userRow, 0);
-    // grid.setImage(oldLoc, null);
 
   public void handleCollision(Location loc) {
-
-    //songs[2].startSound();
-    //lives--;
-    //System.out.println("Lives:" + lives);
 
   }
 
