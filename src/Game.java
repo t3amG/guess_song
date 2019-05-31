@@ -7,16 +7,16 @@ public class Game {
   private int msElapsed;
   private int timesGet;
   private int timesAvoid;
+  private int probOfNoteSpawn;
+  private String notesPic;
   private WavPlayer mainSong;
   private WavPlayer titleSong;
   private String mainWitch;
   private int lives;
-  private int probOfNoteSpawn;
-  private String notesPic;
   private boolean readyToStart;
-  private String[] songNames = { "7 Rings", "Bad Guy", "Bohemian Rhapsody", "Coconut Oil", "Could You Be Loved",
+  private String[] songNames = { "7 Rings", "Bad Guy", "Bohemian Rhapsody", "Could You Be Loved",
       "Doo Wop", "Hollaback Girl", "Imported", "Money", "Old Town Road", "Runnin", "Temperature", "Time", "Toast" };
-  private List<WavPlayer> songs;
+  private ArrayList<WavPlayer> songs;
 
   public Game() {
 
@@ -29,13 +29,13 @@ public class Game {
     timesGet = 0;
     timesAvoid = 0;
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
-    notesPic = "images/get.png";
     // if(user clicks enter then go to this screen)
     // titleSong.stop();
 
     mainSong = new WavPlayer("songs/Coconut Oil.wav");
     mainSong.startSound();
     // mainSong.keeplooping();
+    notesPic = "images/get.png";
     updateTitle();
     grid.setImage(new Location(userRow, 0), "images/user.gif");
 
@@ -76,13 +76,17 @@ public class Game {
     int key = grid.checkLastKeyPressed();
     System.out.println(key);
     if (key == 38) {
+      // call method to do the work
       // set up a key to move up the grid 'Up Arrow'
       // check case if you are out of bounds or if you move pass the 0 end at the
       // bottom of the array
+
       Location oldLoc = new Location(userRow, 0);
       grid.setImage(oldLoc, null);
+
       // change the field for user
       userRow--;
+
       if (userRow == -1) {
         userRow = grid.getNumRows() - 1;
         System.out.println("Row#: " + userRow);
@@ -96,19 +100,29 @@ public class Game {
     // set up a key to move down the grid 'Down Arrow'
     if (key == 40) {
       // check case if you are out of bounds or if you move pass the 4 end at the
+      // call method to do the work
+      // set up a key to move up the grid 'Up Arrow'
+      // check case if you are out of bounds or if you move pass the 0 end at the
       // bottom of the array
+
       Location oldLoc = new Location(userRow, 0);
       grid.setImage(oldLoc, null);
+
       // change the field for user
       userRow++;
+
       if (userRow == 5) {
         userRow = 0;
         System.out.println("Row#: " + userRow);
       }
+
       // shift the user picture up in the aaray
       Location loc = new Location(userRow, 0);
       grid.setImage(loc, mainWitch);
+
     }
+    // set up a key to move down the grid 'Down Arrow'
+
   }
 
   public void populateRightEdge() {
