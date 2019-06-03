@@ -129,7 +129,8 @@ public class Game {
        Location temp = new Location (i, j);
        System.out.println(grid.getImage(temp));
        
-       if(j==0){
+       if(j==0 && notesPic.equals(grid.getImage(temp))){
+        grid.setImage(temp, null);
 
 
       } else if(notesPic.equals(grid.getImage(temp))){
