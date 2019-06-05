@@ -140,6 +140,7 @@ public class Game {
         } else if (notesPic.equals(grid.getImage(temp))) {
           Location newLoc = new Location(i, j - 1);
           grid.setImage(newLoc, notesPic);
+          handleCollision(newLoc);
           grid.setImage(temp, null);
         }
 
@@ -153,6 +154,16 @@ public class Game {
     //int num = Math.random() * song.size();
    // song.get(num).play();
     
+    int tempR = loc.getRow();
+    int tempC = loc.getCol();
+    boolean collision = false;
+    if(grid.getImage(loc) != null) {
+      if(tempR == userRow && tempC == 0){
+        collision = true;
+        grid.pause(1000);
+      }
+    }
+    System.out.println(collision);
   }
 
   public int getScore() {
@@ -170,5 +181,6 @@ public class Game {
   public static void main(String[] args) {
     Game game = new Game();
     game.play();
+
   }
 }
