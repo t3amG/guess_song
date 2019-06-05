@@ -32,6 +32,9 @@ public class Game {
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
     notesPic = "images/get.png";
     counter = 0;
+
+    //titleSong.startSound();
+    
     // if(user clicks enter then go to this screen)
     // titleSong.stop();
 
@@ -145,7 +148,11 @@ public class Game {
   }
 
   public void handleCollision(Location loc) {
-    //if 
+    //if the witch touches a note then
+    //mainSong.stop();
+    //int num = Math.random() * song.size();
+   // song.get(num).play();
+    
   }
 
   public int getScore() {
