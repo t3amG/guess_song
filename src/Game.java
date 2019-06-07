@@ -177,10 +177,13 @@ public class Game {
         if(answer.equals(guess)){
           //correct
           System.out.println("Correct");
+          Location ifLoc = new Location(userRow, 0);
+          grid.setImage(ifLoc, mainWitch);
         } else {
           //incorrect
           System.out.println("WRONG");
-
+          Location ifLoc = new Location(userRow, 0);
+          grid.setImage(ifLoc, mainWitch);
         }
         songs.get(num).pauseSound();
         mainSong.startSound();
