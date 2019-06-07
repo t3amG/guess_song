@@ -18,6 +18,7 @@ public class Game {
       "Doo Wop", "Hollaback Girl", "Imported", "Money", "Old Town Road", "Runnin", "Temperature", "Time", "Toast" };
   private List<WavPlayer> songs;
   private String lost;
+  private int counter;
 
   public Game() {
 
@@ -31,6 +32,10 @@ public class Game {
     timesAvoid = 0;
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
     notesPic = "images/get.png";
+    counter = 0;
+
+    //titleSong.startSound();
+    
     // if(user clicks enter then go to this screen)
     // titleSong.stop();
 
@@ -113,32 +118,33 @@ public class Game {
   }
 
   public void populateRightEdge() {
-    probOfNoteSpawn = (int) (Math.random()*grid.getNumRows());
-    int noteSpawn = (int) (Math.random()*grid.getNumRows());
+    probOfNoteSpawn = (int) (Math.random() * grid.getNumRows());
+    int noteSpawn = (int) (Math.random() * grid.getNumRows());
     System.out.println(probOfNoteSpawn);
-    if(noteSpawn == probOfNoteSpawn){
-    Location tempLoc = new Location(probOfNoteSpawn, grid.getNumCols()-1);
-    grid.setImage(tempLoc, notesPic);
+    if (noteSpawn == probOfNoteSpawn) {
+      Location tempLoc = new Location(probOfNoteSpawn, grid.getNumCols() - 1);
+      grid.setImage(tempLoc, notesPic);
     }
   }
 
   public void scrollLeft() {
     System.out.println("ScrollingLeft");
 
-    for(int i = 0; i <grid.getNumRows(); i++){
-      for(int j = 0; j < grid.getNumCols(); j++){
-       Location temp = new Location (i, j);
-       System.out.println(grid.getImage(temp));
-       
-       if(j==0){
+    for (int i = 0; i < grid.getNumRows(); i++) {
+      for (int j = 0; j < grid.getNumCols(); j++) {
+        Location temp = new Location(i, j);
+        System.out.println(grid.getImage(temp));
 
+        if (j == 0 && notesPic.equals(grid.getImage(temp))) {
+          grid.setImage(temp, null);
 
-      } else if(notesPic.equals(grid.getImage(temp))){
-          Location newLoc = new Location(i, j-1);
+        } else if (notesPic.equals(grid.getImage(temp))) {
+          Location newLoc = new Location(i, j - 1);
           grid.setImage(newLoc, notesPic);
+          handleCollision(newLoc);
           grid.setImage(temp, null);
         }
-        
+
       }
     }
   }
@@ -147,11 +153,29 @@ public class Game {
     // grid.setImage(oldLoc, null);
 
   public void handleCollision(Location loc) {
+<<<<<<< HEAD
 
     //songs[2].startSound();
     //lives--;
     //System.out.println("Lives:" + lives);
 
+=======
+    //if the witch touches a note then
+    //mainSong.stop();
+    //int num = Math.random() * song.size();
+   // song.get(num).play();
+    
+    int tempR = loc.getRow();
+    int tempC = loc.getCol();
+    boolean collision = false;
+    if(grid.getImage(loc) != null) {
+      if(tempR == userRow && tempC == 0){
+        collision = true;
+        grid.pause(1000);
+      }
+    }
+    System.out.println(collision);
+>>>>>>> e0103b90612258d44a7b48aa1126eb84cadc283f
   }
 
   public int getScore() {
@@ -169,5 +193,6 @@ public class Game {
   public static void main(String[] args) {
     Game game = new Game();
     game.play();
+
   }
 }
