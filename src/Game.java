@@ -14,10 +14,9 @@ public class Game {
   private int probOfNoteSpawn;
   private String notesPic;
   private boolean readyToStart;
-  private String[] songNames = { "7 Rings", "Bad Guy", "Bohemian Rhapsody", "Coconut Oil", "Could You Be Loved",
+  private String[] songNames = { "7 Rings", "Bad Guy", "Bohemian Rhapsody", "Could You Be Loved",
       "Doo Wop", "Hollaback Girl", "Imported", "Money", "Old Town Road", "Runnin", "Temperature", "Time", "Toast" };
   private List<WavPlayer> songs;
-  private String lost;
   private int counter;
 
   public Game() {
@@ -80,7 +79,7 @@ public class Game {
   public void handleKeyPress() {
     // check last key pressed
     int key = grid.checkLastKeyPressed();
-    System.out.println(key);
+    //System.out.println(key);
     if (key == 38) {
       // set up a key to move up the grid 'Up Arrow'
       // check case if you are out of bounds or if you move pass the 0 end at the
@@ -91,7 +90,7 @@ public class Game {
       userRow--;
       if (userRow == -1) {
         userRow = grid.getNumRows() - 1;
-        System.out.println("Row#: " + userRow);
+        //System.out.println("Row#: " + userRow);
       }
 
       // shift the user picture up in the aaray
@@ -109,7 +108,7 @@ public class Game {
       userRow++;
       if (userRow == 5) {
         userRow = 0;
-        System.out.println("Row#: " + userRow);
+        //System.out.println("Row#: " + userRow);
       }
       // shift the user picture up in the aaray
       Location loc = new Location(userRow, 0);
@@ -120,7 +119,7 @@ public class Game {
   public void populateRightEdge() {
     probOfNoteSpawn = (int) (Math.random() * grid.getNumRows());
     int noteSpawn = (int) (Math.random() * grid.getNumRows());
-    System.out.println(probOfNoteSpawn);
+    //System.out.println(probOfNoteSpawn);
     if (noteSpawn == probOfNoteSpawn) {
       Location tempLoc = new Location(probOfNoteSpawn, grid.getNumCols() - 1);
       grid.setImage(tempLoc, notesPic);
@@ -128,12 +127,12 @@ public class Game {
   }
 
   public void scrollLeft() {
-    System.out.println("ScrollingLeft");
+   // System.out.println("ScrollingLeft");
 
     for (int i = 0; i < grid.getNumRows(); i++) {
       for (int j = 0; j < grid.getNumCols(); j++) {
         Location temp = new Location(i, j);
-        System.out.println(grid.getImage(temp));
+        //System.out.println(grid.getImage(temp));
 
         if (j == 0 && notesPic.equals(grid.getImage(temp))) {
           grid.setImage(temp, null);
@@ -148,18 +147,8 @@ public class Game {
       }
     }
   }
-    // grid.setImage(1, imageFileName);
-    // Location oldLoc = new Location(userRow, 0);
-    // grid.setImage(oldLoc, null);
 
   public void handleCollision(Location loc) {
-<<<<<<< HEAD
-
-    //songs[2].startSound();
-    //lives--;
-    //System.out.println("Lives:" + lives);
-
-=======
     //if the witch touches a note then
     //mainSong.stop();
     //int num = Math.random() * song.size();
@@ -172,10 +161,32 @@ public class Game {
       if(tempR == userRow && tempC == 0){
         collision = true;
         grid.pause(1000);
+        mainSong.pauseSound();
+        int num = (int) (Math.random() * songNames.length);
+        
+        System.out.println(num);
+        songs.get(num).startSound();
+        
+        
+        String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
+        guess = guess.toLowerCase().replaceAll("\\W","");
+        String answer = songNames[num].toLowerCase().replaceAll("\\W","");
+        
+        System.out.println(answer);
+
+        if(answer.equals(guess)){
+          //correct
+          System.out.println("Correct");
+        } else {
+          //incorrect
+          System.out.println("WRONG");
+
+        }
+        songs.get(num).pauseSound();
+        mainSong.startSound();
       }
     }
-    System.out.println(collision);
->>>>>>> e0103b90612258d44a7b48aa1126eb84cadc283f
+    //System.out.println(collision);
   }
 
   public int getScore() {
@@ -189,6 +200,7 @@ public class Game {
   public boolean isGameOver() {
     return false;
   }
+
 
   public static void main(String[] args) {
     Game game = new Game();
