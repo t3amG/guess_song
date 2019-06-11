@@ -14,9 +14,14 @@ public class Game {
   private String mainWitch;
   private int lives;
   private boolean readyToStart;
-  private String[] songNames = { "7 Rings", "Bad Guy", "Bohemian Rhapsody", "Could You Be Loved", "Doo Wop",
-      "Hollaback Girl", "Imported", "Money", "Old Town Road", "Runnin", "Temperature", "Time", "Toast" };
+  private String[] songNames = { "7 Rings", "Bad Guy", "Blessed", "Bohemian Rhapsody", "Could You Be Loved", "Doo Wop",
+      "Feel it Still", "High Hopes", "Hollaback Girl", "Imported", "Lovely", "Miss Independent", "Money",
+      "Old Town Road", "Press", "Runnin", "Shea Butter", "Stressed Out", "Suge", "Temperature", "Time", "Toast",
+      "When I See You", "You Stay" };
+  private String[] oldSongNames = { "Feeling Good", "I want it that way", "Jolene", "Lets get it on", "My Girl",
+      "Poison", "Rock With You", "This Woman's Work", "When Doves Cry" };
   private List<WavPlayer> songs;
+  private List<WavPlayer> oldSongs;
   private int counter;
   private int score;
 
@@ -33,15 +38,9 @@ public class Game {
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
     notesPic = "images/get.png";
     counter = 0;
-<<<<<<< HEAD
-
+    score = 0;
     // titleSong.startSound();
 
-=======
-    score = 0;
-    //titleSong.startSound();
-    
->>>>>>> 7dd6a12c3bb801e378972d03239a0fd0f7f63863
     // if(user clicks enter then go to this screen)
     // titleSong.stop();
 
@@ -57,9 +56,17 @@ public class Game {
     grid.setMovableBackground("images/mainpic.jpg", 0, 0, 1.0, 1.0);
     grid.setImage(new Location(userRow, 0), mainWitch);
 
+    List songTitle = Arrays.asList(songNames);
+    List oldSongTitle = Arrays.asList(oldSongs);
+
+    oldSongs = new ArrayList<WavPlayer>();
+    for (int i = 0; i < oldSongTitle.size(); i++) {
+      oldSongs.add(new WavPlayer("songs/" + oldSongTitle.get(i) + ".wav"));
+    }
+
     songs = new ArrayList<WavPlayer>();
-    for (int i = 0; i < songNames.length; i++) {
-      songs.add(new WavPlayer("songs/" + songNames[i] + ".wav"));
+    for (int i = 0; i < songTitle.size(); i++) {
+      songs.add(new WavPlayer("songs/" + songTitle.get(i) + ".wav"));
     }
 
   }
@@ -188,7 +195,6 @@ public class Game {
 
         System.out.println(num);
         songs.get(num).startSound();
-
         String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
         guess = guess.toLowerCase().replaceAll("\\W", "");
         String answer = songNames[num].toLowerCase().replaceAll("\\W", "");
@@ -205,7 +211,7 @@ public class Game {
         } else {
           // incorrect
           System.out.println("WRONG");
-          score +=0;
+          score += 0;
           lives--;
           System.out.println(score);
           System.out.println(lives);
@@ -213,6 +219,7 @@ public class Game {
           grid.setImage(ifLoc, mainWitch);
         }
         songs.get(num).pauseSound();
+        songs.remove(num);
         mainSong.startSound();
       }
     }
@@ -222,14 +229,15 @@ public class Game {
   public int getScore() {
     return score;
   }
-  
-  public void titleScreen(){
-    Grid title = new Grid (5,10,"images/TITLE.png");
+
+  public void titleScreen() {
+    Grid title = new Grid(5, 10, "images/TITLE.png");
     int key = grid.checkLastKeyPressed();
-    if(key == 13){
+    if (key == 13) {
       grid.removeBackground();
     }
   }
+
   public void updateTitle() {
     grid.setTitle("Game:  " + getScore());
   }
