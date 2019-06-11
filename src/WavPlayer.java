@@ -115,4 +115,9 @@ public class WavPlayer {
 		}
 	}
 
+
+	public String getFileName(){
+		return this.wavMusicFile;
+	}
+
 }
