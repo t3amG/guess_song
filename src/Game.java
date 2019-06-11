@@ -24,9 +24,6 @@ public class Game {
   private List<WavPlayer> oldSongs;
   private int counter;
   private int score;
-  List songTitles;
-  List oldSongTitles;
-
 
   public Game() {
 
@@ -48,10 +45,10 @@ public class Game {
     // titleSong.stop();
 
     mainSong = new WavPlayer("songs/Coconut Oil.wav");
-    
+
     notesPic = "images/get.png";
     updateTitle();
-    
+
     // songTitles = Arrays.asList(songNames);
     // oldSongTitles = Arrays.asList(oldSongs);
 
@@ -69,21 +66,18 @@ public class Game {
 
   public void play() {
 
-    //title begin
+    // title begin
     grid.setBackground("images/title.png");
     titleSong.startSound();
-    
+
     // if(user clicks enter then go to this screen)
-    while(grid.checkLastKeyPressed() == -1){
+    while (grid.checkLastKeyPressed() == -1) {
       Grid.pause(100);
     }
     titleSong.pauseSound();
     grid.setMovableBackground("images/mainpic.jpg", 0, 0, 1.0, 1.0);
-    //grid.setBackground("images/mainpic.jpg");
+    // grid.setBackground("images/mainpic.jpg");
     mainSong.startSound();
-
-    
-
 
     while (!isGameOver()) {
       grid.setImage(new Location(userRow, 0), mainWitch);
@@ -106,21 +100,19 @@ public class Game {
 
     endOfGame();
 
-
-
   }
 
-public void endOfGame(){
-  System.out.println("Finish me.");
+  public void endOfGame() {
+    System.out.println("Finish me.");
 
-}
+  }
 
   public void handleKeyPress() {
     int key = grid.checkLastKeyPressed();
     System.out.println(key);
 
     // check last key pressed
-    //System.out.println(key);
+    // System.out.println(key);
     if (key == 38) {
       // call method to do the work
       // set up a key to move up the grid 'Up Arrow'
@@ -224,7 +216,7 @@ public void endOfGame(){
         String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
         guess = guess.toLowerCase().replaceAll("\\W", "");
         String answer = songs.get(num).getFileName().toLowerCase().replaceAll("\\W", "");
-        answer = answer.substring(5,answer.length()-3);
+        answer = answer.substring(5, answer.length() - 3);
 
         System.out.println(answer);
 
@@ -259,7 +251,6 @@ public void endOfGame(){
 
   public void titleScreen() {
 
-    
   }
 
   public void updateTitle() {
@@ -267,11 +258,11 @@ public void endOfGame(){
   }
 
   public boolean isGameOver() {
-    return lives == 0 ;
+    return lives == 0;
   }
 
   public static void main(String[] args) {
-    //JOptionPane.showMessageDialog(null, "This is a title screen");
+    // JOptionPane.showMessageDialog(null, "This is a title screen");
     Game game = new Game();
     game.play();
 
