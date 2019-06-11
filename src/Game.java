@@ -34,22 +34,10 @@ public class Game {
     notesPic = "images/get.png";
     counter = 0;
     score = 0;
-    //titleSong.startSound();
-    
-    // if(user clicks enter then go to this screen)
-    // titleSong.stop();
 
     mainSong = new WavPlayer("songs/Coconut Oil.wav");
-    mainSong.startSound();
-    // mainSong.keeplooping();
     updateTitle();
-    grid.setImage(new Location(userRow, 0), "images/user.gif");
-
-    // if(user clicks enter then go to this screen)
-    grid.setBackground("images/mainpic.jpg");
-    grid.setMovableBackground("images/mainpic.jpg", 0, 0, 1.0, 1.0);
-    grid.setImage(new Location(userRow, 0), mainWitch);
-
+    
     songs = new ArrayList<WavPlayer>();
     for (int i = 0; i < songNames.length; i++) {
       songs.add(new WavPlayer("songs/" + songNames[i] + ".wav"));
@@ -59,7 +47,24 @@ public class Game {
 
   public void play() {
 
+    //title begin
+    grid.setBackground("images/title.png");
+    titleSong.startSound();
+    
+    // if(user clicks enter then go to this screen)
+    while(grid.checkLastKeyPressed() == -1){
+      Grid.pause(100);
+    }
+    titleSong.pauseSound();
+    grid.setBackground("images/mainpic.jpg");
+    mainSong.startSound();
+
+    
+
+
     while (!isGameOver()) {
+      grid.setImage(new Location(userRow, 0), mainWitch);
+
       grid.pause(100);
       handleKeyPress();
       if (msElapsed % 300 == 0) {
@@ -78,8 +83,10 @@ public class Game {
   }
 
   public void handleKeyPress() {
-    // check last key pressed
     int key = grid.checkLastKeyPressed();
+    System.out.println(key);
+
+    // check last key pressed
     //System.out.println(key);
     if (key == 38) {
       // set up a key to move up the grid 'Up Arrow'
@@ -204,14 +211,14 @@ public class Game {
   }
   
   public void titleScreen(){
-    Grid title = new Grid (5,10,"images/TITLE.png");
+   
     int key = grid.checkLastKeyPressed();
     if(key == 13){
       grid.removeBackground();
     }
   }
   public void updateTitle() {
-    grid.setTitle("Game:  " + getScore());
+    grid.setTitle("Score:  " + getScore() + "Lives: " + lives);
   }
 
   public boolean isGameOver() {
@@ -219,7 +226,9 @@ public class Game {
   }
 
 
+
   public static void main(String[] args) {
+    //JOptionPane.showMessageDialog(null, "This is a title screen");
     Game game = new Game();
     game.play();
 
