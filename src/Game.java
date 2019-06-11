@@ -18,11 +18,12 @@ public class Game {
       "Hollaback Girl", "Imported", "Money", "Old Town Road", "Runnin", "Temperature", "Time", "Toast" };
   private List<WavPlayer> songs;
   private int counter;
+  private int score;
 
   public Game() {
 
     readyToStart = true;
-    lives = 5;
+    lives = 6;
     mainWitch = "images/witch.png";
     grid = new Grid(5, 10);
     userRow = 0;
@@ -32,9 +33,15 @@ public class Game {
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
     notesPic = "images/get.png";
     counter = 0;
+<<<<<<< HEAD
 
     // titleSong.startSound();
 
+=======
+    score = 0;
+    //titleSong.startSound();
+    
+>>>>>>> 7dd6a12c3bb801e378972d03239a0fd0f7f63863
     // if(user clicks enter then go to this screen)
     // titleSong.stop();
 
@@ -191,11 +198,17 @@ public class Game {
         if (answer.equals(guess)) {
           // correct
           System.out.println("Correct");
+          score++;
+          System.out.println(score);
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         } else {
           // incorrect
           System.out.println("WRONG");
+          score +=0;
+          lives--;
+          System.out.println(score);
+          System.out.println(lives);
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         }
@@ -207,9 +220,16 @@ public class Game {
   }
 
   public int getScore() {
-    return 0;
+    return score;
   }
-
+  
+  public void titleScreen(){
+    Grid title = new Grid (5,10,"images/TITLE.png");
+    int key = grid.checkLastKeyPressed();
+    if(key == 13){
+      grid.removeBackground();
+    }
+  }
   public void updateTitle() {
     grid.setTitle("Game:  " + getScore());
   }
