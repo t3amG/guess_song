@@ -9,17 +9,23 @@ public class Game {
   private int timesAvoid;
   private int probOfNoteSpawn;
   private String notesPic;
+  private String losePic;
   private WavPlayer mainSong;
   private WavPlayer titleSong;
+  private WavPlayer winnerSong;
+  private WavPlayer loserSong;
+  private WavPlayer losingLives;
   private String mainWitch;
   private int lives;
   private boolean readyToStart;
-  private String[] songNames = { "7 Rings", "Bad Guy", "Blessed", "Bohemian Rhapsody", "Could You Be Loved", "Doo Wop",
-      "Feel it Still", "High Hopes", "Hollaback Girl", "Imported", "Lovely", "Miss Independent", "Money",
-      "Old Town Road", "Press", "Runnin", "Shea Butter", "Stressed Out", "Suge", "Temperature", "Time", "Toast",
-      "When I See You", "You Stay" };
-  private String[] oldSongNames = { "Feeling Good", "I want it that way", "Jolene", "Lets get it on", "My Girl",
-      "Poison", "Rock With You", "This Woman's Work", "When Doves Cry" };
+  private String[] songNames = { "7 Rings", "Bad Guy", "Beautiful Girls", "Blessed", "Bohemian Rhapsody", "Carry On",
+      "Could You Be Loved", "Doo Wop", "Feel it Still", "I like that", "High Hopes", "Hollaback Girl", "Imported",
+      "Lipgloss", "Lovely", "Man Down", "Milkshake", "Miss Independent", "Money", "Old Town Road", "Ordinary People",
+      "Press", "Pumped Up Kicks", "Runnin", "Shea Butter Baby", "Shallow", "Stressed Out", "Suge", "Tap", "Temperature",
+      "Time", "Toast", "We are young", "When I See You", "You Stay" };
+  private String[] oldSongNames = { "Dancing Queen", "Don't Stop Me Now", "Feeling Good", "I want it that way",
+      "I will survive", "Jolene", "Killing me Softly", "Lets get it on", "My Girl", "No Scrubs", "Poison",
+      "Rock With You", "This Woman's Work", "Unbreak My Heart", "Wannabe", "When Doves Cry" };
   private List<WavPlayer> songs;
   private List<WavPlayer> oldSongs;
   private int counter;
@@ -48,10 +54,13 @@ public class Game {
 
     // if(user clicks enter then go to this screen)
     // titleSong.stop();
-
+    losingLives = new WavPlayer("songs/Lose a Life.wav");
+    // loserSong = new WavPlayer("songs/.wav");
+    winnerSong = new WavPlayer("songs/We Are The Champions.wav");
     mainSong = new WavPlayer("songs/Coconut Oil.wav");
 
     notesPic = "images/get.png";
+    losePic = "images/LOST.png";
     updateTitle();
 
     // songTitles = Arrays.asList(songNames);
@@ -107,8 +116,25 @@ public class Game {
 
   }
 
+  public void clearScreen() {
+    for (int i = 0; i < grid.getNumRows(); i++) {
+      for (int j = 0; j < grid.getNumCols(); j++) {
+        Location newLoc = new Location(i, j);
+        if (grid.getImage(newLoc) != null) {
+          grid.setImage(newLoc, null);
+        }
+      }
+    }
+  }
+
   public void endOfGame() {
     System.out.println("Finish me.");
+    mainSong.pauseSound();
+    grid.setBackground(losePic);
+    losingLives.startSound();
+    clearScreen();
+    // losingLives.pause()
+    // loserSong.startSound();
 
   }
 
@@ -210,6 +236,7 @@ public class Game {
     int tempR = loc.getRow();
     int tempC = loc.getCol();
     boolean collision = false;
+
     if (grid.getImage(loc) != null) {
       if ((tempR == userRow && tempC == 0 )|| (tempR == userRow -1 && tempC == 0)){
         collision = true;
