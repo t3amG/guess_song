@@ -26,6 +26,7 @@ public class Game {
   private int score;
   List songTitles;
   List oldSongTitles;
+  private String[] notesGet = {"images/get.png", "images/quarterGet.png", "images/bonusNote.png"};
 
 
   public Game() {
@@ -39,9 +40,10 @@ public class Game {
     timesGet = 0;
     timesAvoid = 0;
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
-    notesPic = "images/get.png";
+    //notesPic = "images/get.png";
     counter = 0;
-    score = 0;
+
+ 
     // titleSong.startSound();
 
     // if(user clicks enter then go to this screen)
@@ -172,6 +174,7 @@ public void endOfGame(){
   }
 
   public void populateRightEdge() {
+
     probOfNoteSpawn = (int) (Math.random() * grid.getNumRows());
     int noteSpawn = (int) (Math.random() * grid.getNumRows());
     // System.out.println(probOfNoteSpawn);
@@ -213,8 +216,11 @@ public void endOfGame(){
     int tempC = loc.getCol();
     boolean collision = false;
     if (grid.getImage(loc) != null) {
-      if (tempR == userRow && tempC == 0) {
+      if ((tempR == userRow && tempC == 0 )|| (tempR == userRow -1 && tempC == 0)){
         collision = true;
+        grid.setImage(loc, null);
+        Location tempLoc = new Location(tempR, tempC);
+        grid.setImage(tempLoc, "images/collision.png");
         grid.pause(1000);
         mainSong.pauseSound();
         int num = (int) (Math.random() * songs.size());
@@ -271,7 +277,6 @@ public void endOfGame(){
   }
 
   public static void main(String[] args) {
-    //JOptionPane.showMessageDialog(null, "This is a title screen");
     Game game = new Game();
     game.play();
 
