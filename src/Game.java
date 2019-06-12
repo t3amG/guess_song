@@ -16,7 +16,7 @@ public class Game {
   private boolean readyToStart;
   private String[] songNames = { "7 Rings", "Bad Guy", "Blessed", "Bohemian Rhapsody", "Could You Be Loved", "Doo Wop",
       "Feel it Still", "High Hopes", "Hollaback Girl", "Imported", "Lovely", "Miss Independent", "Money",
-      "Old Town Road", "Press", "Runnin", "Shea Butter", "Stressed Out", "Suge", "Temperature", "Time", "Toast",
+      "Old Town Road", "Press", "Runnin", "Shea Butter Baby", "Stressed Out", "Suge", "Temperature", "Time", "Toast",
       "When I See You", "You Stay" };
   private String[] oldSongNames = { "Feeling Good", "I want it that way", "Jolene", "Lets get it on", "My Girl",
       "Poison", "Rock With You", "This Woman's Work", "When Doves Cry" };
@@ -104,6 +104,7 @@ public class Game {
 
   public void endOfGame() {
     System.out.println("Finish me.");
+    mainSong.pauseSound();
 
   }
 
@@ -204,6 +205,7 @@ public class Game {
     int tempR = loc.getRow();
     int tempC = loc.getCol();
     boolean collision = false;
+
     if (grid.getImage(loc) != null) {
       if (tempR == userRow && tempC == 0) {
         collision = true;
