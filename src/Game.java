@@ -58,8 +58,7 @@ public class Game {
     // loserSong = new WavPlayer("songs/.wav");
     winnerSong = new WavPlayer("songs/We Are The Champions.wav");
     mainSong = new WavPlayer("songs/Coconut Oil.wav");
-
-    notesPic = "images/get.png";
+    notesPic = notesGet[(int) (Math.random()*3)];
     losePic = "images/LOST.png";
     updateTitle();
 
@@ -195,12 +194,12 @@ public class Game {
   }
 
   public void populateRightEdge() {
-
     probOfNoteSpawn = (int) (Math.random() * grid.getNumRows());
     int noteSpawn = (int) (Math.random() * grid.getNumRows());
     // System.out.println(probOfNoteSpawn);
     if (noteSpawn == probOfNoteSpawn) {
       Location tempLoc = new Location(probOfNoteSpawn, grid.getNumCols() - 1);
+     notesPic = notesGet[(int) (Math.random() * notesGet.length)];
       grid.setImage(tempLoc, notesPic);
     }
   }
