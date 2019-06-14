@@ -7,7 +7,7 @@ public class Game {
   private int msElapsed;
   private int timesGet;
   private int timesAvoid;
-  private int probOfNoteSpawn;
+  private int rowSpawn;
   private String notesPic;
   private String losePic;
   private WavPlayer mainSong;
@@ -145,6 +145,7 @@ public class Game {
       grid.setBackground(winPic);
       clearScreen();
     }
+
     if (lives == 0) {
       mainSong.pauseSound();
       losingLives.startSound();
@@ -154,7 +155,7 @@ public class Game {
       // loserSong.startSound();
     }
 
-    grid.pause(5000);
+    grid.pause(8000);
     grid.close();
   }
 
@@ -215,12 +216,24 @@ public class Game {
   }
 
   public void populateRightEdge() {
-    probOfNoteSpawn = (int) (Math.random() * grid.getNumRows());
-    int noteSpawn = (int) (Math.random() * grid.getNumRows());
-    // System.out.println(probOfNoteSpawn);
-    if (noteSpawn == probOfNoteSpawn) {
-      Location tempLoc = new Location(probOfNoteSpawn, grid.getNumCols() - 1);
-      notesPic = notesGet[(int) (Math.random() * notesGet.length)];
+    
+    //which row gets a note
+    rowSpawn = (int) (Math.random() * grid.getNumRows());
+    
+    //which note might get placed
+    double noteSpawn = Math.random();
+    if(noteSpawn < 0.45){
+      notesPic = notesGet[0];
+    } else if (noteSpawn > 0.55){
+      notesPic = notesGet[1];
+    } else {
+      notesPic = notesGet[2];
+    }
+
+    //actually show a note
+    double chanceOfNote = Math.random();
+    if (chanceOfNote > .33) {
+      Location tempLoc = new Location(rowSpawn, grid.getNumCols() - 1);      
       grid.setImage(tempLoc, notesPic);
     }
   }
@@ -398,8 +411,8 @@ public class Game {
   }
 
   public static void main(String[] args) {
-    Game game = new Game();
     while(true){
+      Game game = new Game();
       game.play();
     }
   }
