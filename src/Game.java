@@ -93,12 +93,12 @@ public class Game {
   
     for(int j = 0; j<= 5; j++)
     for(int i = 0; i <= 9; i++){
-      Grid.pause(200);
+      grid.pause(200);
       grid.setBackground("gif/frame_" + j + "" + i + "_delay-0.04s.gif");
 }
     // if(user clicks enter then go to this screen)
     while (grid.checkLastKeyPressed() == -1) {
-      Grid.pause(100);
+      grid.pause(100);
     }
     titleSong.pauseSound();
     grid.setMovableBackground("images/mainpic.jpg", 0, 0, 1.0, 1.0);
