@@ -252,6 +252,7 @@ public class Game {
           if (j == 0 && notesPic.equals(grid.getImage(temp))) {
             grid.setImage(temp, null);
 
+
           } else if (notesPic.equals(grid.getImage(temp))) {
             Location newLoc = new Location(i, j - 1);
             grid.setImage(newLoc, notesPic);
@@ -263,26 +264,26 @@ public class Game {
     }
   }
 
-  public void handleCollision(Location loc) {
+  public void handleCollision(Location noteLoc) {
     // if the witch touches a note then
     // mainSong.stop();
     // int num = Math.random() * song.size();
     // song.get(num).play();
 
-    int tempR = loc.getRow();
-    int tempC = loc.getCol();
+    int noteR = noteLoc.getRow();
+    int noteC = noteLoc.getCol();
     boolean collision = false;
+    notesPic = grid.getImage(noteLoc);          //determine which note you collided with
 
-    if (grid.getImage(loc) != null) {
-      if ((tempR == userRow && tempC == 0) || (tempR == userRow - 1 && tempC == 0)) {
-        collision = true;
-        grid.setImage(loc, null);
-        Location tempLoc = new Location(tempR, tempC);
-        grid.setImage(tempLoc, "images/collision.png");
+    //if there's a good collision
+    if (notesPic != null && noteR == userRow && noteC == 0) {
+        
+        grid.setImage(noteLoc, "images/collision.png");
         grid.pause(1000);
         mainSong.pauseSound();
 
-        //if(quater note is picked){
+        //quater note is collided with
+        if(notesPic.equals(notesGet[1])){
       //     int num1 = (int) (Math.random() * oldSongs.size());
 
       //     System.out.println(num1);
