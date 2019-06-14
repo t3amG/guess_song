@@ -19,7 +19,7 @@ public class Game {
   private int lives;
   private boolean readyToStart;
   private String[] songNames = { "7 Rings", "Bad Guy", "Beautiful Girls", "Blessed", "Bohemian Rhapsody", "Carry On",
-      "Could You Be Loved", "Doo Wop", "Feel it Still", "I like that", "High Hopes", "Hollaback Girl", "Imported",
+      "Could You Be Loved", "Doo Wop", "Feel it Still", "I Like That", "High Hopes", "Hollaback Girl", "Imported",
       "Lipgloss", "Lovely", "Man Down", "Milkshake", "Miss Independent", "Money", "Old Town Road", "Ordinary People",
       "Press", "Pumped Up Kicks", "Runnin", "Shea Butter Baby", "Shallow", "Stressed Out", "Suge", "Tap", "Temperature",
       "Time", "Toast", "We are young", "When I See You", "You Stay" };
@@ -47,6 +47,7 @@ public class Game {
     lives = 3;
     mainWitch = "images/witch.png";
     grid = new Grid(5, 10);
+    grid.fullscreen();
     userRow = 0;
     msElapsed = 0;
     timesGet = 0;
@@ -89,7 +90,7 @@ public class Game {
   }
 
   public void play() {
-
+    
     // title begin
     grid.setBackground("images/titleScreen2.gif");
 
@@ -152,6 +153,9 @@ public class Game {
       // losingLives.pause()
       // loserSong.startSound();
     }
+
+    grid.pause(5000);
+    grid.close();
   }
 
   public void handleKeyPress() {
@@ -229,16 +233,19 @@ public class Game {
         Location temp = new Location(i, j);
         // System.out.println(grid.getImage(temp));
 
-        if (j == 0 && notesPic.equals(grid.getImage(temp))) {
-          grid.setImage(temp, null);
+        for(int k = 0; k < notesGet.length; k++){
+          notesPic  = notesGet[k];
 
-        } else if (notesPic.equals(grid.getImage(temp))) {
-          Location newLoc = new Location(i, j - 1);
-          grid.setImage(newLoc, notesPic);
-          handleCollision(newLoc);
-          grid.setImage(temp, null);
+          if (j == 0 && notesPic.equals(grid.getImage(temp))) {
+            grid.setImage(temp, null);
+
+          } else if (notesPic.equals(grid.getImage(temp))) {
+            Location newLoc = new Location(i, j - 1);
+            grid.setImage(newLoc, notesPic);
+            handleCollision(newLoc);
+            grid.setImage(temp, null);
+          }
         }
-
       }
     }
   }
@@ -300,7 +307,9 @@ public class Game {
       //if(regular note is touched){
         int num2 = (int) (Math.random() * songs.size());
 
-        System.out.println(num2);
+        System.out.print(num2);
+        System.out.println(songs.get(num2));
+
         songs.get(num2).startSound();
         String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
         guess = guess.toLowerCase().replaceAll("\\W", "");
@@ -326,9 +335,12 @@ public class Game {
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         }
-        songs.get(num).pauseSound();
-        songs.remove(num);
+
+
+        songs.get(num2).pauseSound();
+        songs.remove(num2);
         mainSong.startSound();
+     
       }
       // }
 
@@ -367,6 +379,7 @@ public class Game {
     // }
     // System.out.println(collision);
   }
+}
 
   public int getScore() {
     return score;
@@ -386,7 +399,8 @@ public class Game {
 
   public static void main(String[] args) {
     Game game = new Game();
-    game.play();
-
+    while(true){
+      game.play();
+    }
   }
 }
