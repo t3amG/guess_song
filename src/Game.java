@@ -23,17 +23,21 @@ public class Game {
       "Lipgloss", "Lovely", "Man Down", "Milkshake", "Miss Independent", "Money", "Old Town Road", "Ordinary People",
       "Press", "Pumped Up Kicks", "Runnin", "Shea Butter Baby", "Shallow", "Stressed Out", "Suge", "Tap", "Temperature",
       "Time", "Toast", "We are young", "When I See You", "You Stay" };
-  private String[] oldSongNames = { "Dancing Queen", "Don't Stop Me Now", "Feeling Good", "I want it that way",
-      "I will survive", "Jolene", "Killing me Softly", "Lets get it on", "My Girl", "No Scrubs", "Poison",
-      "Rock With You", "This Woman's Work", "Unbreak My Heart", "Wannabe", "When Doves Cry" };
+  private String[] oldSongNames = { "Ain't No Mountain High Enough", "Dancing Queen", "Don't Stop Me Now",
+      "Feeling Good", "I want it that way", "I will survive", "Jolene", "Killing me Softly", "Lets get it on",
+      "My Girl", "No Scrubs", "Poison", "Rock With You", "This Woman's Work", "Unbreak My Heart", "Wannabe",
+      "When Doves Cry" };
+  // private String[] bonusSongNames = {"1950","It Wasn't Me","Kid Cudi","Party In
+  // The U.S.A","Rise Up","Salao","Set Fire to the Rain","Single Ladies"};
+
   private List<WavPlayer> songs;
   private List<WavPlayer> oldSongs;
+  // private List<WavPlayer> bonusSongs;
   private int counter;
   private int score;
   List songTitles;
   List oldSongTitles;
-  private String[] notesGet = {"images/get.png", "images/quarterGet.png", "images/bonusNote.png"};
-
+  private String[] notesGet = { "images/get.png", "images/quarterGet.png", "images/bonusNote.png" };
 
   public Game() {
 
@@ -46,10 +50,9 @@ public class Game {
     timesGet = 0;
     timesAvoid = 0;
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
-    //notesPic = "images/get.png";
+    // notesPic = "images/get.png";
     counter = 0;
 
- 
     // titleSong.startSound();
 
     // if(user clicks enter then go to this screen)
@@ -66,6 +69,11 @@ public class Game {
     // songTitles = Arrays.asList(songNames);
     // oldSongTitles = Arrays.asList(oldSongs);
 
+    // bonusSongs = new ArrayList<WavPlayer>();
+    // for (int i = 0; i < bonusSongNames.length; i++) {
+    // bonusSongs.add(new WavPlayer("songs/" + bonusSongNames[i] + ".wav"));
+    // }
+
     oldSongs = new ArrayList<WavPlayer>();
     for (int i = 0; i < oldSongNames.length; i++) {
       oldSongs.add(new WavPlayer("songs/" + oldSongNames[i] + ".wav"));
@@ -81,7 +89,8 @@ public class Game {
   public void play() {
 
     // title begin
-    grid.setBackground("images/title.png");
+    grid.setBackground("images/titleScreen2.gif");
+
     titleSong.startSound();
 
     // if(user clicks enter then go to this screen)
@@ -130,10 +139,10 @@ public class Game {
   public void endOfGame() {
     System.out.println("Finish me.");
     mainSong.pauseSound();
-    grid.setBackground(losePic);
     losingLives.startSound();
+    grid.setBackground(losePic);
     clearScreen();
-    // losingLives.pause()
+    // losingLives.pauseSound();
     // loserSong.startSound();
 
   }
@@ -238,7 +247,7 @@ public class Game {
     boolean collision = false;
 
     if (grid.getImage(loc) != null) {
-      if ((tempR == userRow && tempC == 0 )|| (tempR == userRow -1 && tempC == 0)){
+      if ((tempR == userRow && tempC == 0) || (tempR == userRow - 1 && tempC == 0)) {
         collision = true;
         grid.setImage(loc, null);
         Location tempLoc = new Location(tempR, tempC);
