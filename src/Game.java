@@ -38,6 +38,8 @@ public class Game {
   List songTitles;
   List oldSongTitles;
   private String[] notesGet = { "images/get.png", "images/quarterGet.png", "images/bonusNote.png" };
+  private int goal;
+  private String winPic;
 
   public Game() {
 
@@ -52,7 +54,8 @@ public class Game {
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
     // notesPic = "images/get.png";
     counter = 0;
-
+    goal = 5;
+    winPic = "images/WON.png";
     // titleSong.startSound();
 
     // if(user clicks enter then go to this screen)
@@ -61,8 +64,7 @@ public class Game {
     // loserSong = new WavPlayer("songs/.wav");
     winnerSong = new WavPlayer("songs/We Are The Champions.wav");
     mainSong = new WavPlayer("songs/Coconut Oil.wav");
-
-    notesPic = "images/get.png";
+    notesPic = notesGet[(int) (Math.random() * 3)];
     losePic = "images/LOST.png";
     updateTitle();
 
@@ -137,14 +139,19 @@ public class Game {
   }
 
   public void endOfGame() {
-    System.out.println("Finish me.");
-    mainSong.pauseSound();
-    losingLives.startSound();
-    grid.setBackground(losePic);
-    clearScreen();
-    // losingLives.pauseSound();
-    // loserSong.startSound();
-
+    if (score == goal) {
+      mainSong.pauseSound();
+      grid.setBackground(winPic);
+      clearScreen();
+    }
+    if (lives == 0) {
+      mainSong.pauseSound();
+      losingLives.startSound();
+      grid.setBackground(losePic);
+      clearScreen();
+      // losingLives.pause()
+      // loserSong.startSound();
+    }
   }
 
   public void handleKeyPress() {
@@ -204,12 +211,12 @@ public class Game {
   }
 
   public void populateRightEdge() {
-
     probOfNoteSpawn = (int) (Math.random() * grid.getNumRows());
     int noteSpawn = (int) (Math.random() * grid.getNumRows());
     // System.out.println(probOfNoteSpawn);
     if (noteSpawn == probOfNoteSpawn) {
       Location tempLoc = new Location(probOfNoteSpawn, grid.getNumCols() - 1);
+      notesPic = notesGet[(int) (Math.random() * notesGet.length)];
       grid.setImage(tempLoc, notesPic);
     }
   }
@@ -303,7 +310,7 @@ public class Game {
   }
 
   public boolean isGameOver() {
-    return lives == 0;
+    return lives == 0 || score == goal;
   }
 
   public static void main(String[] args) {
