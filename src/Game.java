@@ -33,6 +33,8 @@ public class Game {
   List songTitles;
   List oldSongTitles;
   private String[] notesGet = {"images/get.png", "images/quarterGet.png", "images/bonusNote.png"};
+  private int goal;
+  private String winPic;
 
 
   public Game() {
@@ -48,8 +50,8 @@ public class Game {
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
     //notesPic = "images/get.png";
     counter = 0;
-
- 
+    goal = 5;
+    winPic = "images/WON.png";
     // titleSong.startSound();
 
     // if(user clicks enter then go to this screen)
@@ -127,14 +129,19 @@ public class Game {
   }
 
   public void endOfGame() {
-    System.out.println("Finish me.");
-    mainSong.pauseSound();
-    grid.setBackground(losePic);
-    losingLives.startSound();
-    clearScreen();
-    // losingLives.pause()
-    // loserSong.startSound();
-
+    if(score == goal){
+      mainSong.pauseSound();
+      grid.setBackground(winPic);
+      clearScreen();
+    }
+    if(lives == 0){
+      mainSong.pauseSound();
+      grid.setBackground(losePic);
+      losingLives.startSound();
+      clearScreen();
+      // losingLives.pause()
+      // loserSong.startSound();
+    }
   }
 
   public void handleKeyPress() {
@@ -293,7 +300,7 @@ public class Game {
   }
 
   public boolean isGameOver() {
-    return lives == 0;
+    return lives == 0 || score == goal;
   }
 
   public static void main(String[] args) {
