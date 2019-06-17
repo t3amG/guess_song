@@ -152,14 +152,22 @@ public class Game {
     if (score == goal) {
       mainSong.pauseSound();
       winnerSong.startSound();
-      grid.setBackground(winPic);
+      for (int j = 0; j <= 2; j++) {
+        for (int i = 0; i <= 9; i++) {
+          grid.pause(5);
+          grid.setBackground("gif2/frame_" + j + "" + i + "_delay-0.14s.gif");
+        }
+      }
       clearScreen();
     }
 
     if (lives == 0) {
       mainSong.pauseSound();
       losingLives.startSound();
-      grid.setBackground(losePic);
+      for (int i = 0; i <= 1; i++) {
+        grid.pause(5);
+        grid.setBackground("gif2/frame_" + i + "_delay-0.05s.gif");
+      }
       clearScreen();
       // losingLives.pause()
       // loserSong.startSound();
