@@ -18,13 +18,13 @@ public class Game {
   private String mainWitch;
   private int lives;
   private boolean readyToStart;
-  private String[] songNames = { "7 Rings", "Bad Guy", "Beautiful Girls", "Blessed", "Bohemian Rhapsody", "Carry On",
-      "Could You Be Loved", "Doo Wop", "Feel it Still", "I Like That", "High Hopes", "Hollaback Girl", "Imported",
-      "Lipgloss", "Lovely", "Man Down", "Milkshake", "Miss Independent", "Money", "Old Town Road", "Ordinary People",
-      "Press", "Pumped Up Kicks", "Runnin", "Shea Butter Baby", "Shallow", "Stressed Out", "Suge", "Tap", "Temperature",
-      "Time", "Toast", "We are young", "When I See You", "You Stay" };
+  private String[] songNames = { "7 Rings", "Baby Shark", "Bad Guy", "Beautiful Girls", "Blessed", "Bohemian Rhapsody",
+      "Carry On", "Could You Be Loved", "Doo Wop", "Feel it Still", "I Like That", "High Hopes", "Hollaback Girl",
+      "Imported", "Lipgloss", "Lovely", "Man Down", "Milkshake", "Miss Independent", "Money", "Old Town Road",
+      "Ordinary People", "Press", "Pumped Up Kicks", "Runnin", "Shea Butter Baby", "Shallow", "Stressed Out", "Suge",
+      "Tap", "Temperature", "Time", "Toast", "We Are Young", "When I See You", "You Stay" };
   private String[] oldSongNames = { "Ain't No Mountain High Enough", "Dancing Queen", "Don't Stop Me Now",
-      "Feeling Good", "I Want It That Way", "I Will Survive", "Jolene", "Killing me Softly", "Lets get it on",
+      "Feeling Good", "I Want It That Way", "I Will Survive", "Jolene", "Killing Me Softly", "Lets get it on",
       "My Girl", "No Scrubs", "Poison", "Rock with you", "This Woman's Work", "Un-break My Heart", "Wannabe",
       "When Doves Cry" };
   private String[] bonusSongNames = { "1950", "It Wasn't Me", "Kid Cudi", "Party In The U.S.A", "Rise Up", "Salao",
@@ -55,7 +55,7 @@ public class Game {
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
     // notesPic = "images/get.png";
     counter = 0;
-    goal = 5;
+    goal = 6;
     winPic = "images/WON.png";
     // titleSong.startSound();
 
@@ -97,12 +97,18 @@ public class Game {
     while (grid.checkLastKeyPressed() == -1) {
       for (int j = 0; j <= 5; j++) {
         for (int i = 0; i <= 9; i++) {
-          grid.pause(200);
+          grid.pause(5);
           grid.setBackground("gif/frame_" + j + "" + i + "_delay-0.04s.gif");
         }
-      }
-      grid.pause(10);
+      } // grid.pause(10);
     }
+
+    grid.setBackground("images/Rules.jpg");
+
+    while (grid.checkLastKeyPressed() == -1) {
+      grid.setBackground("images/Rules.jpg");
+    }
+
     titleSong.pauseSound();
     grid.setMovableBackground("images/mainpic.jpg", 0, 0, 1.0, 1.0);
     // grid.setBackground("images/mainpic.jpg");
@@ -145,8 +151,8 @@ public class Game {
   public void endOfGame() {
     if (score == goal) {
       mainSong.pauseSound();
-      grid.setBackground(winPic);
       winnerSong.startSound();
+      grid.setBackground(winPic);
       clearScreen();
     }
 
@@ -159,13 +165,14 @@ public class Game {
       // loserSong.startSound();
     }
 
-    grid.pause(8000);
+    grid.pause(10000);
+    winnerSong.pauseSound();
     grid.close();
   }
 
   public void handleKeyPress() {
     int key = grid.checkLastKeyPressed();
-   // System.out.println(key);
+    // System.out.println(key);
 
     // check last key pressed
     // System.out.println(key);
@@ -288,9 +295,9 @@ public class Game {
       // regualar
       if (notesPic.equals(notesGet[0])) {
         int num2 = (int) (Math.random() * songs.size());
-
+        System.out.print("Single Note:\t");
         System.out.print(num2);
-        System.out.println(songNames[num2]);
+        System.out.println(songs.get(num2).getFileName());
 
         songs.get(num2).startSound();
         String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
@@ -302,9 +309,8 @@ public class Game {
 
         if (answer.equals(guess)) {
           // correct
-          System.out.println("Correct");
+          System.out.print("Correct");
           score++;
-          System.out.println(score);
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         } else {
@@ -312,8 +318,6 @@ public class Game {
           System.out.println("WRONG");
           score += 0;
           lives--;
-          System.out.println(score);
-          System.out.println(lives);
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         }
@@ -328,7 +332,10 @@ public class Game {
       if (notesPic.equals(notesGet[1])) {
         int num1 = (int) (Math.random() * oldSongs.size());
 
-        System.out.println(num1);
+        System.out.print("Quarter Note:\t");
+        System.out.print(num1);
+        System.out.println(oldSongs.get(num1).getFileName());
+
         oldSongs.get(num1).startSound();
         String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
         guess = guess.toLowerCase().replaceAll("\\W", "");
@@ -341,7 +348,6 @@ public class Game {
           // correct
           System.out.println("Correct");
           score++;
-          System.out.println(score);
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         } else {
@@ -349,8 +355,6 @@ public class Game {
           System.out.println("WRONG");
           score += 0;
           lives--;
-          System.out.println(score);
-          System.out.println(lives);
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         }
@@ -363,7 +367,10 @@ public class Game {
       if (notesPic.equals(notesGet[2])) {
         int num3 = (int) (Math.random() * bonusSongs.size());
 
-        System.out.println(num3);
+        System.out.print("Bonus Note:\t");
+        System.out.print(num3);
+        System.out.println(bonusSongs.get(num3).getFileName());
+
         bonusSongs.get(num3).startSound();
         String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
         guess = guess.toLowerCase().replaceAll("\\W", "");
@@ -375,8 +382,7 @@ public class Game {
         if (answer.equals(guess)) {
           // correct
           System.out.println("Correct");
-          score += 2;
-          System.out.println(score);
+          lives += 2;
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         } else {
@@ -384,8 +390,6 @@ public class Game {
           System.out.println("WRONG");
           score += 0;
           lives--;
-          System.out.println(score);
-          System.out.println(lives);
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         }
@@ -393,11 +397,10 @@ public class Game {
         bonusSongs.remove(num3);
         mainSong.startSound();
       }
-<<<<<<< HEAD
+      System.out.print("Score: " + score);
+      System.out.println("\tLives: " + lives);
+
       // System.out.println(collision);
-=======
-    //  System.out.println(collision);
->>>>>>> 672cb6e3f8b48580a7a26987bee7907d499c7e4d
     }
   }
 
