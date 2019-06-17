@@ -154,6 +154,8 @@ public class Game {
       winnerSong.startSound();
       grid.setBackground(winPic);
       clearScreen();
+      grid.pause(10000);
+      winnerSong.pauseSound();
     }
 
     if (lives == 0) {
@@ -161,12 +163,11 @@ public class Game {
       losingLives.startSound();
       grid.setBackground(losePic);
       clearScreen();
-      // losingLives.pause()
-      // loserSong.startSound();
+      grid.pause(10000);
+      //losingLives.pauseSound();
     }
 
-    grid.pause(10000);
-    winnerSong.pauseSound();
+
     grid.close();
   }
 
