@@ -165,7 +165,7 @@ public class Game {
 
   public void handleKeyPress() {
     int key = grid.checkLastKeyPressed();
-    System.out.println(key);
+   // System.out.println(key);
 
     // check last key pressed
     // System.out.println(key);
@@ -333,7 +333,7 @@ public class Game {
         String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
         guess = guess.toLowerCase().replaceAll("\\W", "");
         String answer = oldSongs.get(num1).getFileName().toLowerCase().replaceAll("\\W", "");
-        answer = answer.substring(5, answer.length() - 3);
+        answer = answer.substring(8, answer.length() - 3);
 
         System.out.println(answer);
 
@@ -368,7 +368,7 @@ public class Game {
         String guess = grid.showInputDialog("What is this song? **Write the name of the song**");
         guess = guess.toLowerCase().replaceAll("\\W", "");
         String answer = bonusSongs.get(num3).getFileName().toLowerCase().replaceAll("\\W", "");
-        answer = answer.substring(5, answer.length() - 3);
+        answer = answer.substring(10, answer.length() - 3);
 
         System.out.println(answer);
 
@@ -393,7 +393,11 @@ public class Game {
         bonusSongs.remove(num3);
         mainSong.startSound();
       }
+<<<<<<< HEAD
       // System.out.println(collision);
+=======
+    //  System.out.println(collision);
+>>>>>>> 672cb6e3f8b48580a7a26987bee7907d499c7e4d
     }
   }
 
