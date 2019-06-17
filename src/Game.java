@@ -92,13 +92,15 @@ public class Game {
 
     titleSong.startSound();
 
-    for (int j = 0; j <= 5; j++)
-      for (int i = 0; i <= 9; i++) {
-        grid.pause(200);
-        grid.setBackground("gif/frame_" + j + "" + i + "_delay-0.04s.gif");
-      }
+  
     // if(user clicks enter then go to this screen)
     while (grid.checkLastKeyPressed() == -1) {
+      for (int j = 0; j <= 5; j++){
+        for (int i = 0; i <= 9; i++) {
+          grid.pause(200);
+          grid.setBackground("gif/frame_" + j + "" + i + "_delay-0.04s.gif");
+        }
+      }
       grid.pause(100);
     }
     titleSong.pauseSound();
