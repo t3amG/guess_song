@@ -393,11 +393,7 @@ public class Game {
         bonusSongs.remove(num3);
         mainSong.startSound();
       }
-<<<<<<< HEAD
       // System.out.println(collision);
-=======
-    //  System.out.println(collision);
->>>>>>> 672cb6e3f8b48580a7a26987bee7907d499c7e4d
     }
   }
 
