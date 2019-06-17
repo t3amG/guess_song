@@ -269,8 +269,8 @@ public class Game {
         grid.pause(1000);
         mainSong.pauseSound();
 
-        // if(quater note is picked){
-        // int num1 = (int) (Math.random() * oldSongs.size());
+        // if(notesGet[0]){
+        // int num1 = (in vcfgt) (Math.random() * oldSongs.size());
 
         // System.out.println(num1);
         // oldSongs.get(num1).startSound();
