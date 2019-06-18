@@ -153,6 +153,7 @@ public class Game {
       mainSong.pauseSound();
       winnerSong.startSound();
       clearScreen();
+<<<<<<< HEAD
       grid.pause(100);
       
 
@@ -162,12 +163,17 @@ public class Game {
           grid.setBackground("gif2/frame_" + j + "" + i + "_delay-0.14s.gif");
         }
       }
+=======
+      grid.pause(10000);
+      winnerSong.pauseSound();
+>>>>>>> 7a73815b2bcc1c25da8ac16b1911a08483fd97ff
     }
 
     if (lives == 0) {
       mainSong.pauseSound();
       losingLives.startSound();
       clearScreen();
+<<<<<<< HEAD
       for (int i = 0; i <= 1; i++) {
         grid.pause(200);
         grid.setBackground("gif2/frame_" + i + "_delay-0.05s.gif");
@@ -178,6 +184,13 @@ public class Game {
 
     grid.pause(12000);
     winnerSong.pauseSound();
+=======
+      grid.pause(10000);
+      //losingLives.pauseSound();
+    }
+
+
+>>>>>>> 7a73815b2bcc1c25da8ac16b1911a08483fd97ff
     grid.close();
 
   }
