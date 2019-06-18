@@ -153,29 +153,80 @@ public class Game {
       mainSong.pauseSound();
       winnerSong.startSound();
       clearScreen();
-      grid.pause(10000);
-      winnerSong.pauseSound();
+      grid.pause(100);
+
+      for (int i = 0; i < 2; i++) {
+        if (i == 1) {
+          for (int j = 0; j < 9; j++) {
+            grid.pause(100);
+            grid.setBackground("win/frame_" + i + "" + j + "_delay-0.14s.gif");
+          }
+        } else {
+          for (int j = 0; j < 10; j++) {
+            grid.pause(100);
+            grid.setBackground("win/frame_" + i + "" + j + "_delay-0.14s.gif");
+          }
+        }
+      }
     }
 
     if (lives == 0) {
       mainSong.pauseSound();
       losingLives.startSound();
       clearScreen();
-      
-      for (int i = 0; i <= 1; i++) {
-        grid.pause(200);
-        grid.setBackground("gif2/frame_" + i + "_delay-0.05s.gif");
-      }
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 1 + "_delay-0.05s.gif");
+      grid.setBackground("lose/frame_" + 0 + "_delay-0.05s.gif");
       // losingLives.pause()
       // loserSong.startSound();
     }
-
+    grid.pause(10000);
     winnerSong.pauseSound();
-      grid.pause(10000);
-      //losingLives.pauseSound();
-    }
-
-
     grid.close();
 
   }
