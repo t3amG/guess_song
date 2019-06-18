@@ -55,7 +55,7 @@ public class Game {
     titleSong = new WavPlayer("songs/Holy Mountain.wav");
     // notesPic = "images/get.png";
     counter = 0;
-    goal = 2;
+    goal = 4;
     winPic = "images/WON.png";
     // titleSong.startSound();
 
@@ -157,7 +157,7 @@ public class Game {
 
       for (int i = 0; i < 2; i++) {
         if (i == 1) {
-          for (int j = 0; j < 9; j++) {
+          for (int j = 0; j < 5; j++) {
             grid.pause(100);
             grid.setBackground("win/frame_" + i + "" + j + "_delay-0.14s.gif");
           }
@@ -225,8 +225,9 @@ public class Game {
       // losingLives.pause()
       // loserSong.startSound();
     }
-    grid.pause(10000);
+    grid.pause(8000);
     winnerSong.pauseSound();
+    loserSong.pauseSound();
     grid.close();
 
   }
@@ -443,7 +444,8 @@ public class Game {
         if (answer.equals(guess)) {
           // correct
           System.out.println("Correct");
-          lives += 2;
+          lives++;
+          score++;
           Location ifLoc = new Location(userRow, 0);
           grid.setImage(ifLoc, mainWitch);
         } else {
