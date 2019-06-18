@@ -153,6 +153,9 @@ public class Game {
       mainSong.pauseSound();
       winnerSong.startSound();
       clearScreen();
+      grid.pause(100);
+      
+
       for (int j = 0; j <= 2; j++) {
         for (int i = 0; i <= 9; i++) {
           grid.pause(100);
